@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TriviaApi.Models;
 
-namespace triciaApi.Models;
+namespace TriviaApi.Data;
 
 public class AppDbContext : DbContext
 {

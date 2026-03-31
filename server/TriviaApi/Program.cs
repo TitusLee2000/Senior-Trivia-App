@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using TriviaApi.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // connect to SQL Server
