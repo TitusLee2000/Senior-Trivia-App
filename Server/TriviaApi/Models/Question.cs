@@ -1,19 +1,16 @@
 namespace TriviaApi.Models;
+
 public class Question
 {
-    // Primary key 
     public int Id { get; set; }
-    // Foreign key
-    public int QuizId { get; set; }
-    public string Text { get; set; }
-
+    public int CategoryId { get; set; }
+    public Category Category { get; set; } = null!;
+    public string Text { get; set; } = string.Empty;
     public string? MediaUrl { get; set; }
-    // Image, video, or audio
     public string? MediaType { get; set; }
-
-    public string? Option1 { get; set; }
-    public string? Option2 { get; set; }
-    public string? Option3 { get; set; }
-    public string? Option4 { get; set; }
-    public int CorrectAnswereIndex { get; set; }
+    public string Option1 { get; set; } = string.Empty;
+    public string Option2 { get; set; } = string.Empty;
+    public string Option3 { get; set; } = string.Empty;
+    public string Option4 { get; set; } = string.Empty;
+    public int CorrectAnswerIndex { get; set; }
 }

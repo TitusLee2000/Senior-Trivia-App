@@ -1,9 +1,27 @@
-## "tells" the SQL container what that password is
 services:
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=Strong_Password_1234  # Must match your secret!
+      - MSSQL_SA_PASSWORD=Strong_Password_1234
     ports:
       - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+
+  api:
+    build:
+      context: ./Server/TriviaApi
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=TriviaDb;User Id=sa;Password=Strong_Password_1234;TrustServerCertificate=True;
+      - Jwt__Key=SuperSecretKeyForDev_AtLeast32Characters!
+      - Jwt__Issuer=TriviaApi
+      - Jwt__Audience=TriviaApp
+    depends_on:
+      - db
+
+volumes:
+  sqldata:
